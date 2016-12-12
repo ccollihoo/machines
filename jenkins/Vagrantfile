@@ -1,0 +1,23 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.network "forwarded_port", guest: 8080, host: 9080
+  config.vm.network "forwarded_port", guest: 8088, host: 9088
+  config.vm.network "forwarded_port", guest: 22, host: 9022
+  
+  config.vm.define "aptget" do |aptget|
+    aptget.vm.provision "shell" do |s|
+      s.path = "ubuntu.sh"
+    end
+  end
+
+  config.vm.provision "docker" do |d|
+    d.run "jenkins_master",
+      image: "jenkins:alpine",
+      args: "-p 8080:8080 -p 50000:50000 -v /var/jenkins:/var/jenkins_home",
+      daemonize: true,
+      restart: "always"
+  end
+end
