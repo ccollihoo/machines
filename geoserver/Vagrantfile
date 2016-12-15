@@ -1,0 +1,24 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/xenial64"
+  config.vm.network "forwarded_port", guest: 80, host: 1080
+  config.vm.network "forwarded_port", guest: 7474, host: 7474
+  config.vm.network "forwarded_port", guest: 7687, host: 7687
+
+  config.vm.define "aptget" do |aptget|
+    aptget.vm.provision "shell" do |s|
+      s.path = "ubuntu.sh"
+    end
+  end
+
+  config.vm.provision "docker" do |d|
+    d.run "neo4j",
+      image: "neo4j:3.0",
+      args: "-p 7474:7474 -p 7687:7687 -v $HOME/neo4j/data:/data -v $HOME/neo4j/logs:/logs",
+      daemonize: true,
+      restart: "always"
+  end
+
+end
