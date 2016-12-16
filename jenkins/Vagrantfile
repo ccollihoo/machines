@@ -5,19 +5,19 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.network "forwarded_port", guest: 8080, host: 9080
   config.vm.network "forwarded_port", guest: 8088, host: 9088
-  config.vm.network "forwarded_port", guest: 22, host: 9022
   
-  config.vm.define "aptget" do |aptget|
-    aptget.vm.provision "shell" do |s|
-      s.path = "ubuntu.sh"
+  config.vm.define "aptget" do |jenkins|
+    jenkins.vm.provision "shell" do |shell|
+      shell.path = "jenkins.sh"
     end
   end
 
   config.vm.provision "docker" do |d|
     d.run "jenkins_master",
-      image: "jenkins:alpine",
-      args: "-p 8080:8080 -p 50000:50000 -v /var/jenkins:/var/jenkins_home",
+      image: "jenkins:latest",
+      args: "-u root -p 8080:8080 -p 50000:50000 -v /var/jenkins:/var/jenkins_home -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker",
       daemonize: true,
+      privileged: true,
       restart: "always"
   end
 end
