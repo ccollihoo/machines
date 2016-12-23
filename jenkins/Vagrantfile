@@ -5,7 +5,8 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/xenial64"
   config.vm.network "forwarded_port", guest: 8080, host: 9080
   config.vm.network "forwarded_port", guest: 8088, host: 9088
-  
+  config.vm.synced_folder "jenkins/", "/var/jenkins"
+
   config.vm.provision "shell" do |shell|
       shell.path = "jenkins.sh"
     end
@@ -18,4 +19,5 @@ Vagrant.configure("2") do |config|
       privileged: true,
       restart: "always"
   end
+
 end
