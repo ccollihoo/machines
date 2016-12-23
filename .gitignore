@@ -1,0 +1,5 @@
+jenkins/jenkins/*
+.vagrant/
+*.iml
+.idea/
+*.log
