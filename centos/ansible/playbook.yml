@@ -1,0 +1,12 @@
+---
+- hosts: centos
+  remote_user: vagrant
+  become: true
+  become_user: root
+  tasks:
+  - name: Add repository
+    yum_repository:
+      name: epel
+      description: EPEL YUM repo
+      baseurl: https://download.fedoraproject.org/pub/epel/7/x86_64/
+
