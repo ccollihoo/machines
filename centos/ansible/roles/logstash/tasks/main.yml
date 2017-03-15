@@ -1,0 +1,8 @@
+- name: install logstash
+  yum: name=logstash state=latest
+
+- name: enable and start logstash
+  systemd:
+    name: logstash
+    enabled: yes
+    state: started

@@ -1,0 +1,8 @@
+- name: install kibana
+  yum: name=kibana state=latest
+
+- name: enable and start kibana
+  systemd:
+    name: kibana
+    enabled: yes
+    state: started

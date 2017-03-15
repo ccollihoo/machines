@@ -5,4 +5,8 @@
   become_user: root
   roles:
   - epel
-  - elk
+  - elasticrepo
+  - elasticsearch
+  - kibana
+  - logstash
+  - fixtures
