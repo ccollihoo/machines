@@ -1,6 +1,14 @@
 - name: install kibana
   yum: name=kibana state=latest
 
+- name: copy kibana.yml
+  copy:
+    src: kibana.yml
+    dest: /etc/kibana/kibana.yml
+    owner: root
+    group: root
+    mode: "u=rw,g=r,o=r"
+
 - name: enable and start kibana
   systemd:
     name: kibana
