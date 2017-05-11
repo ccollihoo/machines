@@ -3,44 +3,10 @@
   remote_user: vagrant
   become: true
   become_user: root
-  tasks:
-  - name: Add repository
-    yum_repository:
-      name: epel
-      description: EPEL YUM repo
-      baseurl: https://download.fedoraproject.org/pub/epel/7/x86_64/
-
-  - name: add java
-    yum: name=java-1.8.0-openjdk state=latest
-
-  - name: load elasticsearch key
-    rpm_key:
-      state: present
-      key: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-
-  - name: Add Elastic repository
-    yum_repository:
-      name: Elastic
-      description: EPEL YUM repo
-      baseurl: https://artifacts.elastic.co/packages/5.x/yum
-      gpgcheck: yes
-      gpgkey: https://artifacts.elastic.co/GPG-KEY-elasticsearch
-
-  - name: install kibana
-    yum: name=kibana state=latest
-
-  - name: enable and start kibana
-    systemd:
-      name: kibana
-      enabled: yes
-      state: started
-
-  - name: install elasticsearch
-    yum: name=elasticsearch state=latest
-
-  - name: enable and start elasticsearch
-    systemd:
-      name: elasticsearch
-      enabled: yes
-      state: started
-
+  roles:
+  - epel
+  - elasticrepo
+  - elasticsearch
+  - kibana
+  - logstash
+  - fixtures
