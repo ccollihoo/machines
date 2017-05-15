@@ -1,0 +1,38 @@
+- name: create directory
+  file:
+    path: "{{prometheus_var_path}}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: put prometheus.yml into host system
+  copy:
+    src: prometheus.yml
+    dest: "{{ prometheus_yml }}"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: install docker packages
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+  - docker
+  - docker-python
+
+- name: start docker if necessary
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: run prometheus as docker container
+  docker_container:
+    name: "prometheus"
+    image: "prom/prometheus"
+    volumes:
+      - "{{ prometheus_yml }}:/etc/prometheus/prometheus.yml:Z"
+    exposed_ports:
+      - "9090:9090"
