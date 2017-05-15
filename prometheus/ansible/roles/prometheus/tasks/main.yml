@@ -1,10 +1,13 @@
-- name: create directory
+- name: create directories
   file:
-    path: "{{prometheus_var_path}}"
+    path: "{{ item }}"
     state: directory
     owner: root
     group: root
     mode: 0755
+  with_items:
+    - "{{ prometheus_var_path }}/etc"
+    - "{{ prometheus_data }}"
 
 - name: put prometheus.yml into host system
   copy:
@@ -34,5 +37,6 @@
     image: "prom/prometheus"
     volumes:
       - "{{ prometheus_yml }}:/etc/prometheus/prometheus.yml:Z"
-    exposed_ports:
+      - "{{ prometheus_data}}:/prometheus:Z"
+    ports:
       - "9090:9090"

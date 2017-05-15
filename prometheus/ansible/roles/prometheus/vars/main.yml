@@ -1,2 +1,3 @@
 prometheus_var_path: "/var/lib/prometheus"
-prometheus_yml: "{{ prometheus_var_path }}/prometheus.yml"
+prometheus_yml: "{{ prometheus_var_path }}/etc/prometheus.yml"
+prometheus_data: "{{ prometheus_var_path }}/data"
