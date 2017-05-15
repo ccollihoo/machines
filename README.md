@@ -11,3 +11,7 @@ http://container-solutions.com/running-docker-in-jenkins-in-docker/
 
 * the project uses jenkins in a docker container
 * the jenkins workspace is put outside the vagrant container
+
+
+## Prometheus
+* Application: http://localhost:9090
