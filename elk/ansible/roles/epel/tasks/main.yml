@@ -1,14 +1,10 @@
 ---
-- name: load EPEL key
-  rpm_key:
-    state: present
-    key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
-
 - name: Add repository
   yum_repository:
     name: epel
     description: EPEL YUM repo
     baseurl: https://download.fedoraproject.org/pub/epel/7/x86_64/
+    gpgkey: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-7
 
 - name: add java
   yum: name=java-1.8.0-openjdk state=latest

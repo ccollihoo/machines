@@ -2,6 +2,10 @@
 
 Virtual machines for testing or working issues.
 
+# elk
+* elastic search: http://localhost:9200/
+* kibana: http://localhost:5601/
+
 
 ## Jenkins Server
 * Application: http://localhost:9080

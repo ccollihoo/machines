@@ -1,8 +1,7 @@
 ---
 - hosts: elk
   remote_user: vagrant
-  become: true
-  become_user: root
+  become: yes
   roles:
   - epel
   - elasticrepo
