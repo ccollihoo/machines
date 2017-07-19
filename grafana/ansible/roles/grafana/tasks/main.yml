@@ -11,6 +11,14 @@
     name: grafana
     state: latest
 
+- name: publish grafana.ini
+  copy:
+    src: grafana.ini
+    dest: /etc/grafana/grafana.ini
+    owner: root
+    group: grafana
+    mode: 0440
+
 - name: start grafana server
   service:
     name: grafana-server

@@ -39,4 +39,6 @@ http://container-solutions.com/running-docker-in-jenkins-in-docker/
     * it can be the overall admin or an "organization admin"
     * the organization admin only can handle organizational dashsboards
     * it also can add new data sources
+    
+ This setup enables every account to be "Editor".
  
