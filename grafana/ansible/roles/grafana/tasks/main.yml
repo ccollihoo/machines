@@ -1,0 +1,8 @@
+- name: add repository
+  yum_repository:
+    name: grafana
+    description: grafana YUM repsoitory
+    baseurl: https://packagecloud.io/grafana/stable/el/7/
+    gpgkey: https://packagecloud.io/gpg.key https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
+    gpgcheck: yes
+

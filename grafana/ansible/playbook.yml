@@ -1,0 +1,7 @@
+---
+- hosts: grafana
+  remote_user: vagrant
+  become: yes
+  roles:
+  - grafana
+
