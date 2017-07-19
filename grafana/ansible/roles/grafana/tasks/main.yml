@@ -2,7 +2,17 @@
   yum_repository:
     name: grafana
     description: grafana YUM repsoitory
-    baseurl: https://packagecloud.io/grafana/stable/el/7/
+    baseurl: "https://packagecloud.io/grafana/stable/el/7/$basearch"
     gpgkey: https://packagecloud.io/gpg.key https://grafanarel.s3.amazonaws.com/RPM-GPG-KEY-grafana
     gpgcheck: yes
 
+- name: install grafana
+  yum:
+    name: grafana
+    state: latest
+
+- name: start grafana server
+  systemd:
+    name: grafana-server
+    state: reloaded
+    enabled: yes
