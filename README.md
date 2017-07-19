@@ -31,4 +31,12 @@ http://container-solutions.com/running-docker-in-jenkins-in-docker/
 * all other users get the role "Viewer"; 
 * to edit dashboards, set role to "Editor" -> two options: indivudually or global
 * individually: go to user administration ("Edit user") and set role there
-* globally: edit /etc/grafana/grafana.ini (it's also provided here in ansible role) 
+* globally: edit /etc/grafana/grafana.ini (it's also provided here in ansible role)
+* "Read-Only Editor": 
+    * user has right to change certain boards, but can't set up new ones
+    * user can create new "organizations"
+* "Admin" - "organization admin":
+    * it can be the overall admin or an "organization admin"
+    * the organization admin only can handle organizational dashsboards
+    * it also can add new data sources
+ 
