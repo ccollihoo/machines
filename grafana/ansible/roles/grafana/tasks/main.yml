@@ -12,7 +12,7 @@
     state: latest
 
 - name: start grafana server
-  systemd:
+  service:
     name: grafana-server
-    state: reloaded
+    state: restarted
     enabled: yes

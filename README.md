@@ -6,6 +6,8 @@ Virtual machines for testing or working issues.
 * elastic search: http://localhost:9200/
 * kibana: http://localhost:5601/
 
+Some installation hints:
+* [codecentric Tutorial](https://blog.codecentric.de/en/2014/10/log-management-spring-boot-applications-logstash-elastichsearch-kibana/)
 
 ## Jenkins Server
 * Application: http://localhost:9080
@@ -19,3 +21,14 @@ http://container-solutions.com/running-docker-in-jenkins-in-docker/
 
 ## Prometheus
 * Application: http://localhost:9090
+
+## grafana
+* installation instructions: http://docs.grafana.org/installation/rpm/
+* Application: http://localhost:3000
+* after initial installation you can access via admin (with password: admin)
+
+### Admin privileges: 
+* all other users get the role "Viewer"; 
+* to edit dashboards, set role to "Editor" -> two options: indivudually or global
+* individually: go to user administration ("Edit user") and set role there
+* globally: edit /etc/grafana/grafana.ini (it's also provided here in ansible role) 
